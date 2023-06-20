@@ -1,0 +1,9 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <solid android:color="#cc464646" /> <!-- 指示点或指示条的背景颜色 -->
+    <size
+        android:width="5dp"
+    android:height="5dp" />
+
+</shape>
