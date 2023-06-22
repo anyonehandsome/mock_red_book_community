@@ -11,6 +11,16 @@ public class UserBean {
     private int age;
     private String phone;
 
+    public UserBean() {
+    }
+
+    public UserBean(String name, String sex, int age, String phone) {
+        this.name = name;
+        this.sex = sex;
+        this.age = age;
+        this.phone = phone;
+    }
+
     public Drawable getAvatar() {
         return avatar;
     }

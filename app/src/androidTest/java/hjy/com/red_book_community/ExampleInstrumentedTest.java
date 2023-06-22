@@ -15,9 +15,9 @@ public class ExampleInstrumentedTest {
     @Test
     public void useAppContext() throws Exception {
         Context appContext = InstrumentationRegistry.getTargetContext();
-        String oldDbPath = appContext.getDatabasePath("privateTourGuide.db").getPath();
+        String oldDbPath = appContext.getDatabasePath("MockRedBookCommunity.db").getPath();
 
-        InputStream newDbInputStream = appContext.getAssets().open("privateTourGuide.db");
+        InputStream newDbInputStream = appContext.getAssets().open("MockRedBookCommunity.db");
 
         OutputStream newDbOutputStream = new FileOutputStream(oldDbPath);
 

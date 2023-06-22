@@ -25,7 +25,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
     private Context context;
     private SharedPreferences sp;
 
-    public HomeAdapter(List<FontEndBean> list) {
+    public  HomeAdapter(List<FontEndBean> list) {
         this.list = list;
     }
 

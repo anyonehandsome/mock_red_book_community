@@ -131,6 +131,7 @@
 
         <!--打卡-->
         <LinearLayout
+            android:id="@+id/to_tick"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -138,7 +139,6 @@
             android:orientation="vertical">
             <!--打卡图标-->
             <ImageView
-                android:id="@+id/tick_1"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center"
@@ -155,13 +155,13 @@
 
         <!--编辑-->
         <LinearLayout
+            android:id="@+id/to_edit_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
             <!--编辑图标-->
             <ImageView
-                android:id="@+id/to_edit_1"
                 android:layout_width="45dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="15dp"
@@ -170,6 +170,7 @@
         </LinearLayout>
         <!--社区-->
         <LinearLayout
+            android:id="@+id/community_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -177,7 +178,6 @@
             android:orientation="vertical">
             <!--社区图标-->
             <ImageView
-                android:id="@+id/community_1"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center"
@@ -193,6 +193,7 @@
         </LinearLayout>
         <!--我-->
         <LinearLayout
+            android:id="@+id/me_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -200,7 +201,6 @@
             android:orientation="vertical">
             <!--我图标-->
             <ImageView
-                android:id="@+id/me_1"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center"

@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import hjy.com.red_book_community.R;
 import hjy.com.red_book_community.community.bean.ImageBean;
-import hjy.com.red_book_community.community.service.ImageService;
 
 public class ImageAdapter extends PagerAdapter  {
     private Context context;

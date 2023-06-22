@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyHelper extends SQLiteOpenHelper {
     public MyHelper(Context context) {
-        super(context, "privateTourGuide.db", null, 1);
+        super(context, "MockRedBookCommunity.db", null, 1);
     }
 
     @Override
@@ -16,9 +16,7 @@ public class MyHelper extends SQLiteOpenHelper {
                 "title NVARCHAR(30)," +
                 "content TEXT," +
                 "postTime DATE DEFAULT CURRENT_TIMESTAMP," +
-                "likeNumber INTEGER DEFAULT 0)");
-        db.execSQL("CREATE TABLE articlesImages(id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "articleId INTEGER," +
+                "likeNumber INTEGER DEFAULT 0," +
                 "image1 VARCHAR(256),  " +
                 "image2 VARCHAR(256)," +
                 "image3 VARCHAR(256))");

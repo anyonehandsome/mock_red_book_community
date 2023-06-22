@@ -18,6 +18,14 @@ public class ArticleBean {
     public ArticleBean() {
     }
 
+    public ArticleBean(int id, String title, Long likeNumber, Date postTime, ImageBean imageBean) {
+        this.id = id;
+        this.title = title;
+        this.likeNumber = likeNumber;
+        this.postTime = postTime;
+        this.imageBean = imageBean;
+    }
+
     public ArticleBean(int id, int writerId, String title, String content,
                        Drawable writerAvatar, String writerName, Long likeNumber,
                        Date postTime, ImageBean imageBean) {

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginTop="8dp"
+            android:src="@drawable/back"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:id="@+id/back"
+            android:layout_marginBottom="2dp"/>
+        <ImageView
+            android:layout_marginTop="8dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/innerHead"
+            android:layout_marginBottom="2dp"/>
+        <TextView
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginLeft="70dp"
+            android:layout_toRightOf="@+id/found"
+            android:id="@+id/innerName"
+            android:textSize="20sp"
+            android:textColor="#333333"
+            android:layout_marginBottom="2dp"/>
+    </RelativeLayout>
+    <!--直线-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="5dp"
+        android:background="#333333"/>
+    <ListView
+        android:id="@+id/own_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+</LinearLayout>

@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="hjy.com.red_book_community">
 
+    <!-- 手机权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,28 +27,19 @@
             android:label="@string/title_activity_register"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".community.activity.MenuActivity"
-            android:supportsRtl="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity
-            android:name=".community.activity.RecordActivity"
-            android:supportsRtl="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity
             android:name=".community.activity.HomeActivity"
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".community.activity.ContentActivity" >
-        </activity>
-        <activity android:name=".user.activity.InfoActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-
-        </activity>
-        <activity android:name=".community.activity.EditActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-
-        </activity>
+        <activity android:name=".community.activity.ContentActivity" />
+        <activity
+            android:name=".user.activity.InfoActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".community.activity.EditActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".community.activity.MyContentActivity" />
+        <activity android:name=".community.activity.TickActivity"></activity>
     </application>
 
 </manifest>

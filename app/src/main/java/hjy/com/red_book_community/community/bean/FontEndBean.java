@@ -6,7 +6,7 @@ import java.util.Date;
 public class FontEndBean {
     private int id;
     private String title;
-    private Drawable[] images;
+    private Drawable images;
     private Drawable writerAvatar;
     private String writerName;
     private Long likeNumber;
@@ -15,7 +15,7 @@ public class FontEndBean {
     public FontEndBean() {
     }
 
-    public Drawable[] getImages() {
+    public Drawable getImages() {
         return images;
     }
 
@@ -36,10 +36,10 @@ public class FontEndBean {
     }
 
     public Drawable getImages(int position) {
-        return images[position];
+        return images;
     }
 
-    public void setImages(Drawable[] image) {
+    public void setImages(Drawable image) {
         this.images = image;
     }
 

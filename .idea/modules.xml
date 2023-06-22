@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://D:\Codes\mock-red-book-community-master\app\app.iml" filepath="D:\Codes\mock-red-book-community-master\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/mock-red-book-community-master.iml" filepath="$PROJECT_DIR$/mock-red-book-community-master.iml" />
       <module fileurl="file://D:\Codes\mock-red-book-community-master\redbookcommunity.iml" filepath="D:\Codes\mock-red-book-community-master\redbookcommunity.iml" />
     </modules>

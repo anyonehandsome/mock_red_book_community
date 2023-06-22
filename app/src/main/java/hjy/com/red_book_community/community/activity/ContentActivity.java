@@ -11,7 +11,7 @@ import android.widget.TextView;
 import hjy.com.red_book_community.R;
 import hjy.com.red_book_community.community.adapter.ImageAdapter;
 import hjy.com.red_book_community.community.bean.ArticleBean;
-import hjy.com.red_book_community.community.service.ImageService;
+import hjy.com.red_book_community.community.service.ArticleService;
 import hjy.com.red_book_community.utils.DateUtil;
 
 /**
@@ -24,16 +24,17 @@ public class ContentActivity extends AppCompatActivity {
     TextView innerName;
     ImageView innerHead;
     ImageView back;
-    private ImageService imageService;
     private ArticleBean articleBean;
     private TextView title;
     private TextView content;
     private TextView innerPostTime;
+    private ArticleService articleService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_content);
+        articleService = new ArticleService(this);
         init();
         addIndicators();
         autoScroll();
@@ -41,23 +42,10 @@ public class ContentActivity extends AppCompatActivity {
 
     @SuppressLint("NewApi")
     private void init() {
-        this.imageService = new ImageService(this);
+        // 初始化组件
         this.innerName = (TextView) findViewById(R.id.innerName);
         this.innerHead = (ImageView) findViewById(R.id.innerHead);
         this.back = (ImageView) findViewById(R.id.back);
-        this.title = (TextView) findViewById(R.id.innerTitle);
-        this.content = (TextView) findViewById(R.id.innerContent);
-        this.innerPostTime = (TextView) findViewById(R.id.innerPostTime);
-        this.mViewPager = (ViewPager) findViewById(R.id.viewPager);
-        this.mIndicatorLayout = findViewById(R.id.indicatorLayout);
-        this.articleBean = this.imageService.query();
-        this.innerName.setText(articleBean.getWriterName());
-        this.content.setText(articleBean.getContent());
-        this.title.setText(articleBean.getTitle());
-        this.innerPostTime.setText(DateUtil.converString(articleBean.getPostTime()));
-        this.innerHead.setBackground(articleBean.getWriterAvatar());
-        this.mAdapter = new ImageAdapter(this,articleBean.getImageBean());
-        this.mViewPager.setAdapter(mAdapter);
         // 设置返回键
         this.back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +53,20 @@ public class ContentActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+        this.title = (TextView) findViewById(R.id.innerTitle);
+        this.content = (TextView) findViewById(R.id.innerContent);
+        this.innerPostTime = (TextView) findViewById(R.id.innerPostTime);
+        this.mViewPager = (ViewPager) findViewById(R.id.viewPager);
+        this.mIndicatorLayout = findViewById(R.id.indicatorLayout);
+        // 获取当前页面bean
+        this.articleBean = this.articleService.queryCurrentArticle();
+        this.innerName.setText(this.articleBean.getWriterName());
+        this.content.setText(this.articleBean.getContent());
+        this.title.setText(this.articleBean.getTitle());
+        this.innerPostTime.setText(DateUtil.converString(this.articleBean.getPostTime()));
+        this.innerHead.setBackground(this.articleBean.getWriterAvatar());
+        this.mAdapter = new ImageAdapter(this, this.articleBean.getImageBean());
+        this.mViewPager.setAdapter(mAdapter);
     }
 
     // 添加指示点或指示条

@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">PrivateTourGuide</string>
+    <string name="app_name">MockRedBookCommunity</string>
     <string name="title_activity_register">RegisterActivity</string>
 </resources>

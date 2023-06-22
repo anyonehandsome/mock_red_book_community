@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#fff">
+    android:background="#fff"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -29,6 +28,13 @@
         android:layout_marginTop="5dp"
         android:background="#333333" />
 
+    <Button
+        android:id="@+id/update_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="修改信息"
+        android:textSize="20dp" />
+
     <RelativeLayout
         android:id="@+id/re_myinfo"
         android:layout_width="match_parent"
@@ -39,6 +45,7 @@
         android:paddingTop="8dp">
 
         <ImageView
+            android:focusableInTouchMode="true"
             android:id="@+id/iv_avatar"
             android:layout_width="64dp"
             android:layout_height="64dp"
@@ -50,9 +57,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            android:textColor="#333333"
             android:background="@null"
             android:text="更换头像"
+            android:textColor="#333333"
             android:textSize="35px" />
 
         <LinearLayout
@@ -157,7 +164,7 @@
         android:background="#333333" />
 
     <RelativeLayout
-        android:id="@+id/re_xiangce"
+        android:id="@+id/my_content"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:clickable="true"
@@ -166,11 +173,11 @@
         <ImageView
             android:id="@+id/iv_xiangce"
             android:layout_width="26dp"
-            android:layout_height="26dp"
+            android:layout_height="28dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="12dp"
-            android:src="@drawable/add_photo" />
+            android:src="@drawable/my_content" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -178,7 +185,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@id/iv_xiangce"
-            android:text="照片上传"
+            android:text="我的笔记"
             android:textColor="#353535"
             android:textSize="16sp" />
 
@@ -190,16 +197,18 @@
             android:background="#dadada" />
 
     </RelativeLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0.2dp"
         android:layout_alignParentBottom="true"
         android:layout_marginRight="12dp"
         android:background="#dadada" />
+
     <RelativeLayout
         android:id="@+id/re_aboutwe"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
         android:clickable="true"
         android:paddingLeft="12dp">
 
@@ -223,16 +232,18 @@
             android:textSize="16sp" />
 
     </RelativeLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0.2dp"
         android:layout_alignParentBottom="true"
         android:layout_marginRight="12dp"
         android:background="#dadada" />
+
     <RelativeLayout
         android:id="@+id/re_help"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:clickable="true"
         android:paddingLeft="12dp">
@@ -257,6 +268,7 @@
             android:textSize="16sp" />
 
     </RelativeLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0.2dp"
@@ -267,7 +279,7 @@
     <RelativeLayout
         android:id="@+id/tuichu"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:clickable="true"
         android:paddingLeft="12dp">
@@ -303,6 +315,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="bottom"
         android:orientation="horizontal">
         <!--首页-->
         <LinearLayout

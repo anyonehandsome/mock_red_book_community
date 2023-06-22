@@ -2,10 +2,13 @@ package hjy.com.red_book_community.community.service;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,27 +19,25 @@ import hjy.com.red_book_community.community.bean.FontEndBean;
 import hjy.com.red_book_community.utils.DateUtil;
 import hjy.com.red_book_community.utils.MyHelper;
 
+/**
+ * 首页展示
+ */
 public class FontEndService {
     private MyHelper myHelper;
     private SQLiteDatabase db;
-    private SharedPreferences sp;
-    private ImageService imageService;
-    private int writerId;
+    private AssetManager assetManager;
     public FontEndService(Context context) {
-        this.imageService = new ImageService(context);
         this.myHelper = new MyHelper(context);
         this.db = myHelper.getReadableDatabase();
-        this.sp = context.getSharedPreferences("userInfo",Context.MODE_PRIVATE);
-        this.writerId = sp.getInt("id", 0);
+        this.assetManager = context.getAssets();
     }
-    //查询数据
+    //查询首页展示
     public List<FontEndBean> query(){
         List<FontEndBean> list=new ArrayList<FontEndBean>();
-        String sql = "select articles.id,articles.title,articles.postTime,articles.likeNumber, " +
-                "user.name,user.avatar," +
-                "articlesImages.image1,articlesImages.image2,articlesImages.image3 " +
-                "from articles join user on articles.writerId = user.id " +
-                "join articlesImages on articles.id = articlesImages.articleId";
+        String sql = "select articles.id,articles.title,articles.likeNumber," +
+                "articles.postTime,articles.image1," +
+                " user.name,user.avatar " +
+                "from articles join user on articles.writerId = user.id";
         Cursor cursor=db.rawQuery(sql,null);
         if (cursor.moveToFirst()){
             do{
@@ -54,23 +55,47 @@ public class FontEndService {
                         ("postTime"));
                 String image1 = cursor.getString(cursor.getColumnIndex
                         ("image1"));
-                String image2 = cursor.getString(cursor.getColumnIndex
-                        ("image2"));
-                String image3 = cursor.getString(cursor.getColumnIndex
-                        ("image3"));
                 fontEndBean.setId(id);
                 fontEndBean.setTitle(title);
                 fontEndBean.setPostTime(DateUtil.convertTime(time));
                 fontEndBean.setWriterName(writerName);
-                fontEndBean.setWriterAvatar(imageService.getImage(writerAvatar,4));
+                fontEndBean.setWriterAvatar(getImage(writerAvatar,4));
                 fontEndBean.setLikeNumber(likeNumber);
-                fontEndBean.setImages(new Drawable[]{imageService.getImage(image1,1),
-                        imageService.getImage(image2,2),
-                        imageService.getImage(image3,3)});
+                fontEndBean.setImages(getImage(image1,1));
                 list.add(fontEndBean);
             }while (cursor.moveToNext());
             cursor.close();
         }
         return list;
+    }
+
+    /**
+     * 将数据库内图片转换为drawable
+     */
+    public Drawable getImage(String image,int position){
+        String fileName = null;
+        switch (position){
+            case 1:
+                fileName = "images1/";
+                break;
+            case 2:
+                fileName = "images2/";
+                break;
+            case 3:
+                fileName = "images3/";
+                break;
+            case 4:
+                fileName = "avatar/";
+                break;
+        }
+        try {
+            InputStream inputStream = this.assetManager.open(fileName + image + ".png");
+            Drawable drawable = Drawable.createFromStream(inputStream, null);
+            inputStream.close();
+            return drawable;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
