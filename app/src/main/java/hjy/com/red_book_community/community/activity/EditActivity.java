@@ -2,26 +2,28 @@ package hjy.com.red_book_community.community.activity;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.ClipData;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import hjy.com.red_book_community.R;
 import hjy.com.red_book_community.community.bean.ImageBean;
 import hjy.com.red_book_community.community.service.ArticleService;
+import hjy.com.red_book_community.utils.ImageUtils;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
@@ -31,6 +33,7 @@ import static android.view.View.VISIBLE;
  */
 public class EditActivity extends Activity implements View.OnClickListener {
     private static final int PICK_IMAGE_REQUEST = 1;
+    ImageView back_2;
     ImageView add_images;
     EditText edit_content;
     EditText edit_title;
@@ -39,7 +42,8 @@ public class EditActivity extends Activity implements View.OnClickListener {
     ImageView image2;
     ImageView image3;
     private ArticleService articleService;
-    private ImageBean imageBean;
+    private ImageBean imageBean = new ImageBean();
+    private List<Bitmap> bitmapList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,8 @@ public class EditActivity extends Activity implements View.OnClickListener {
         image1 = findViewById(R.id.image_1);
         image2 = findViewById(R.id.image_2);
         image3 = findViewById(R.id.image_3);
+        back_2 = findViewById(R.id.back_2);
+        back_2.setOnClickListener(this);
         submit.setOnClickListener(this);
         add_images.setOnClickListener(this);
     }
@@ -77,9 +83,11 @@ public class EditActivity extends Activity implements View.OnClickListener {
             case R.id.submit:
                 String title = edit_title.getText().toString();
                 String content = edit_content.getText().toString();
-                imageBean = new ImageBean(0,image1.getDrawable(),
-                        image2.getDrawable(),image3.getDrawable());
-                if (articleService.insertData(title, content,imageBean)) {
+                if (imageBean.getImage1() == null) {
+                    Toast.makeText(this, "请放入图片", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (articleService.insertData(title, content, imageBean)) {
                     Toast.makeText(this, "发布成功", Toast.LENGTH_SHORT).show();
                     intent = new Intent(this, HomeActivity.class);
                     startActivity(intent);
@@ -96,34 +104,31 @@ public class EditActivity extends Activity implements View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK) {
-            if (data != null) {
-                ClipData clipData = data.getClipData();
-                ArrayList<Uri> imageUris = new ArrayList<>();
-                if (clipData != null) {
-                    // 多选模式下选择了多张照片
-                    for (int i = 0; i < clipData.getItemCount(); i++) {
-                        Uri imageUri = clipData.getItemAt(i).getUri();
-                        imageUris.add(imageUri);
-                    }
-                } else {
-                    // 单选模式或者多选模式下只选择了一张照片
-                    Uri imageUri = data.getData();
-                    imageUris.add(imageUri);
+            try {
+                if (data!=null){
+                    Uri uri = data.getData();
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                    bitmapList.add(bitmap);
                 }
                 // 对获取到的照片进行显示或处理
-                if (imageUris.size()>0){
-                    image1.setImageURI(imageUris.get(0));
+                if (bitmapList.size() > 0 && bitmapList.size()<2) {
+                    image1.setImageBitmap(bitmapList.get(0));
+                    imageBean.setImage1(bitmapList.get(0));
                     image1.setVisibility(VISIBLE);
                 }
-                if (imageUris.size()>1){
-                    image2.setImageURI(imageUris.get(1));
+                if (bitmapList.size() > 1 && bitmapList.size()<3) {
+                    image2.setImageBitmap(bitmapList.get(1));
+                    imageBean.setImage2(bitmapList.get(1));
                     image2.setVisibility(VISIBLE);
                 }
-                if (imageUris.size()>2){
-                    image3.setImageURI(imageUris.get(2));
+                if (bitmapList.size() > 2 && bitmapList.size()<=3) {
+                    image3.setImageBitmap(bitmapList.get(2));
+                    imageBean.setImage3(bitmapList.get(2));
                     image3.setVisibility(VISIBLE);
                     add_images.setVisibility(GONE);
-                }
+                }else return;
+            }catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }

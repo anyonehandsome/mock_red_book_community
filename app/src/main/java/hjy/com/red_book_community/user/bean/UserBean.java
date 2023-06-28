@@ -1,13 +1,13 @@
 package hjy.com.red_book_community.user.bean;
 
-import android.graphics.drawable.Drawable;
+import android.graphics.Bitmap;
 
 public class UserBean {
     private int id;
     private String name;
     private String password;
     private String sex;
-    private Drawable avatar;
+    private Bitmap avatar;
     private int age;
     private String phone;
 
@@ -21,11 +21,11 @@ public class UserBean {
         this.phone = phone;
     }
 
-    public Drawable getAvatar() {
+    public Bitmap getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(Drawable avatar) {
+    public void setAvatar(Bitmap avatar) {
         this.avatar = avatar;
     }
 

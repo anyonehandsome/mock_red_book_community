@@ -35,7 +35,7 @@ public class ImageAdapter extends PagerAdapter  {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.activity_content_item, container, false);
         ImageView imageView = view.findViewById(R.id.imageView);
-        imageView.setBackground(mImages.get(position));
+        imageView.setImageBitmap(mImages.get(position));
         container.addView(view);
         return view;
     }

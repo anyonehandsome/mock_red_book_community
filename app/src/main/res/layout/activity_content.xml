@@ -32,6 +32,27 @@
             android:textSize="20sp"
             android:textColor="#333333"
             android:layout_marginBottom="2dp"/>
+
+        <TextView
+            android:id="@+id/innerTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="310dp"
+            android:textColor="#000"
+            android:layout_marginLeft="25dp"
+            android:textSize="30dp" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/back"
+            android:layout_marginTop="40dp"
+            android:padding="10dp" />
     </RelativeLayout>
     <!--直线-->
     <View
@@ -40,11 +61,6 @@
         android:layout_marginTop="5dp"
         android:background="#333333"/>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:padding="10dp" />
     <LinearLayout
         android:id="@+id/indicatorLayout"
         android:layout_width="wrap_content"
@@ -62,14 +78,6 @@
         android:layout_height="wrap_content"
         android:textColor="#4e4e4e"
         android:id="@+id/innerPostTime"/>
-    <TextView
-        android:textSize="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#000"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:id="@+id/innerTitle"/>
     <TextView
         android:textSize="20dp"
         android:layout_width="wrap_content"

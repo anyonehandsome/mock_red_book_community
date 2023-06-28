@@ -1,22 +1,19 @@
 package hjy.com.red_book_community.community.bean;
 
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import java.util.Date;
 
 public class FontEndBean {
     private int id;
     private String title;
-    private Drawable images;
-    private Drawable writerAvatar;
+    private Bitmap images;
+    private Bitmap writerAvatar;
     private String writerName;
     private Long likeNumber;
     private Date postTime;
 
     public FontEndBean() {
-    }
-
-    public Drawable getImages() {
-        return images;
     }
 
     public int getId() {
@@ -35,19 +32,19 @@ public class FontEndBean {
         this.title = title;
     }
 
-    public Drawable getImages(int position) {
+    public Bitmap getImages() {
         return images;
     }
 
-    public void setImages(Drawable image) {
+    public void setImages(Bitmap image) {
         this.images = image;
     }
 
-    public Drawable getWriterAvatar() {
+    public Bitmap getWriterAvatar() {
         return writerAvatar;
     }
 
-    public void setWriterAvatar(Drawable writerAvatar) {
+    public void setWriterAvatar(Bitmap writerAvatar) {
         this.writerAvatar = writerAvatar;
     }
 

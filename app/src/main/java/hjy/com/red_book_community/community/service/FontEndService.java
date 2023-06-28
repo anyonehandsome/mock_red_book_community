@@ -17,6 +17,7 @@ import java.util.List;
 
 import hjy.com.red_book_community.community.bean.FontEndBean;
 import hjy.com.red_book_community.utils.DateUtil;
+import hjy.com.red_book_community.utils.ImageUtils;
 import hjy.com.red_book_community.utils.MyHelper;
 
 /**
@@ -43,8 +44,8 @@ public class FontEndService {
             do{
                 FontEndBean fontEndBean = new FontEndBean();
                 int id = cursor.getInt(cursor.getColumnIndex("id"));
-                String writerAvatar = cursor.getString
-                        (cursor.getColumnIndex("avatar"));
+                byte[] writerAvatar = cursor.getBlob(cursor.getColumnIndex
+                        ("avatar"));
                 String title = cursor.getString(cursor.getColumnIndex
                         ("title"));
                 String writerName = cursor.getString(cursor.getColumnIndex
@@ -53,15 +54,15 @@ public class FontEndService {
                         ("likeNumber"));
                 String time = cursor.getString(cursor.getColumnIndex
                         ("postTime"));
-                String image1 = cursor.getString(cursor.getColumnIndex
+                byte[] image1 = cursor.getBlob(cursor.getColumnIndex
                         ("image1"));
                 fontEndBean.setId(id);
                 fontEndBean.setTitle(title);
                 fontEndBean.setPostTime(DateUtil.convertTime(time));
                 fontEndBean.setWriterName(writerName);
-                fontEndBean.setWriterAvatar(getImage(writerAvatar,4));
+                fontEndBean.setWriterAvatar(ImageUtils.byteArrayToBitmap(writerAvatar));
                 fontEndBean.setLikeNumber(likeNumber);
-                fontEndBean.setImages(getImage(image1,1));
+                fontEndBean.setImages(ImageUtils.byteArrayToBitmap(image1));
                 list.add(fontEndBean);
             }while (cursor.moveToNext());
             cursor.close();

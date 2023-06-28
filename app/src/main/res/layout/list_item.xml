@@ -7,7 +7,6 @@
     <ImageView
         android:id="@+id/image_content_view"
         android:layout_width="100dp"
-        android:src="@drawable/user"
         android:layout_height="100dp" />
 
     <RelativeLayout
@@ -15,7 +14,7 @@
         android:layout_height="match_parent">
         <TextView
             android:id="@+id/own_title"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:paddingTop="5dp"
             android:paddingLeft="5dp"
             android:layout_width="match_parent"
@@ -24,28 +23,33 @@
         <TextView
             android:text="点赞量:"
             android:layout_marginTop="50dp"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:layout_width="match_parent"
             android:layout_height="100dp" />
         <TextView
             android:id="@+id/own_postTime"
             android:layout_marginLeft="70dp"
             android:layout_marginTop="50dp"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:layout_width="match_parent"
             android:layout_height="100dp" />
         <TextView
             android:gravity="bottom"
             android:text="发布日期:"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:layout_width="match_parent"
             android:layout_height="100dp" />
         <TextView
             android:id="@+id/own_likeNumber"
             android:gravity="bottom"
             android:layout_marginLeft="90dp"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:layout_width="match_parent"
+            android:layout_height="100dp" />
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_marginLeft="220dp"
+            android:layout_width="100dp"
             android:layout_height="100dp" />
     </RelativeLayout>
 

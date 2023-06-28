@@ -64,7 +64,7 @@ public class ContentActivity extends AppCompatActivity {
         this.content.setText(this.articleBean.getContent());
         this.title.setText(this.articleBean.getTitle());
         this.innerPostTime.setText(DateUtil.converString(this.articleBean.getPostTime()));
-        this.innerHead.setBackground(this.articleBean.getWriterAvatar());
+        this.innerHead.setImageBitmap(this.articleBean.getWriterAvatar());
         this.mAdapter = new ImageAdapter(this, this.articleBean.getImageBean());
         this.mViewPager.setAdapter(mAdapter);
     }
@@ -96,7 +96,6 @@ public class ContentActivity extends AppCompatActivity {
                 mViewPager.postDelayed(this, delayMs);
             }
         };
-
         mViewPager.postDelayed(runnable, delayMs);
     }
 }

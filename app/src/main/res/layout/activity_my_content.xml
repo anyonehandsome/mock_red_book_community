@@ -32,6 +32,14 @@
             android:textSize="20sp"
             android:textColor="#333333"
             android:layout_marginBottom="2dp"/>
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="330dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="2dp"
+            android:id="@+id/remove"
+            android:src="@drawable/delete"/>
     </RelativeLayout>
     <!--直线-->
     <View
@@ -43,6 +51,5 @@
         android:id="@+id/own_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
     </ListView>
 </LinearLayout>

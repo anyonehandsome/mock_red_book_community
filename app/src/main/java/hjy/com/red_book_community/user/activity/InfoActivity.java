@@ -85,7 +85,7 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
         this.name.setText(userBean.getName());
         this.phone.setText(userBean.getPhone());
         this.sex.setText(userBean.getSex());
-        this.avatar.setBackground(userBean.getAvatar());
+        this.avatar.setImageBitmap(userBean.getAvatar());
     }
 
     @Override
@@ -126,8 +126,7 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.change_head:
                 intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
-                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-                startActivityForResult(intent, PICK_IMAGE_REQUEST);
+                startActivityForResult(intent,PICK_IMAGE_REQUEST);
                 break;
             case R.id.my_content:
                 intent = new Intent(this,MyContentActivity.class);
@@ -142,14 +141,14 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
             // 获取选择的图片URI
             Uri imageUri = data.getData();
-
             try {
-                // 使用BitmapFactory解码URI为Bitmap对象
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
-                // 将Bitmap设置到ImageView中显示
                 avatar.setImageBitmap(bitmap);
-                //TODO:修改头像，存入数据库
-
+                if (userService.updateAvatar(bitmap)) {
+                    Toast.makeText(this, "修改成功", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(this, "修改失败", Toast.LENGTH_SHORT).show();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

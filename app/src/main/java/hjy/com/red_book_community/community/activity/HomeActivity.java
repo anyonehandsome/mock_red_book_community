@@ -52,7 +52,6 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         community_1.setOnClickListener(this);
         me_1.setOnClickListener(this);
         to_tick.setOnClickListener(this);
-
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(
                 2, StaggeredGridLayoutManager.VERTICAL);
         listView.setLayoutManager(layoutManager);

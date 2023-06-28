@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
@@ -29,7 +31,7 @@ public class MyContentAdapter extends BaseAdapter {
 
     public MyContentAdapter(Context context, List<ArticleBean> itemList) {
         this.context = context;
-        sp = context.getSharedPreferences("ownArticle",MODE_PRIVATE);
+        sp = context.getSharedPreferences("noteMsg",MODE_PRIVATE);
         this.itemList = itemList;
     }
 
@@ -51,8 +53,7 @@ public class MyContentAdapter extends BaseAdapter {
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder;
-
+        final ViewHolder viewHolder;
         // 重用已存在的View
         if (convertView == null) {
             // 如果convertView为空，则创建新的布局
@@ -64,6 +65,7 @@ public class MyContentAdapter extends BaseAdapter {
             viewHolder.title = convertView.findViewById(R.id.own_title);
             viewHolder.likeNumber= convertView.findViewById(R.id.own_likeNumber);
             viewHolder.postTime = convertView.findViewById(R.id.own_postTime);
+            viewHolder.checkBox = convertView.findViewById(R.id.checkbox);
             convertView.setTag(viewHolder);
         } else {
             // 如果convertView已存在，则从Tag中获取ViewHolder
@@ -72,7 +74,7 @@ public class MyContentAdapter extends BaseAdapter {
         // 根据position获取对应的数据项
         final ArticleBean item = itemList.get(position);
         // 设置ImageView和TextView的内容
-        viewHolder.image1.setBackground(item.getImageBean().getImage1());
+        viewHolder.image1.setImageBitmap(item.getImageBean().getImage1());
         viewHolder.title.setText(item.getTitle());
         viewHolder.postTime.setText(DateUtil.converString(item.getPostTime()));
         viewHolder.likeNumber.setText(String.valueOf(item.getLikeNumber()));
@@ -80,10 +82,17 @@ public class MyContentAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 SharedPreferences.Editor editor = sp.edit();
-                editor.putInt("noteMsg",item.getId());
+                editor.putInt("id",item.getId());
                 editor.commit();
                 Intent intent = new Intent(context, ContentActivity.class);
                 context.startActivity(intent);
+            }
+        });
+        viewHolder.checkBox.setChecked(item.isChecked());
+        viewHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                item.setChecked(isChecked);
             }
         });
         return convertView;
@@ -95,6 +104,7 @@ public class MyContentAdapter extends BaseAdapter {
         TextView postTime;
         TextView title;
         TextView likeNumber;
+        CheckBox checkBox;
     }
 
 }

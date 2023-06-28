@@ -46,10 +46,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         final FontEndBean fontEndBean = getItem(position);
-        holder.img.setBackground(fontEndBean.getImages(1));
+        holder.img.setImageBitmap(fontEndBean.getImages());
         holder.title.setText(fontEndBean.getTitle());
         holder.username.setText(fontEndBean.getWriterName());
-        holder.head.setBackground(fontEndBean.getWriterAvatar());
+        holder.head.setImageBitmap(fontEndBean.getWriterAvatar());
         holder.img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

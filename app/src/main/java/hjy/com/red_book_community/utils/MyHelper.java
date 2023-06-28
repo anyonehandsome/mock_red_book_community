@@ -15,15 +15,15 @@ public class MyHelper extends SQLiteOpenHelper {
                 "writerId INTEGER," +
                 "title NVARCHAR(30)," +
                 "content TEXT," +
-                "postTime DATE DEFAULT CURRENT_TIMESTAMP," +
+                "postTime DATETIME DEFAULT CURRENT_TIMESTAMP," +
                 "likeNumber INTEGER DEFAULT 0," +
-                "image1 VARCHAR(256),  " +
-                "image2 VARCHAR(256)," +
-                "image3 VARCHAR(256))");
+                "image1 BLOB,  " +
+                "image2 BLOB," +
+                "image3 BLOB)");
         db.execSQL("CREATE TABLE user(id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "name NVARCHAR(20),  " +
                 "password VARCHAR(256)," +
-                "avatar VARCHAR(256)," +
+                "avatar BLOB," +
                 "sex CHAR(2)," +
                 "age INTEGER," +
                 "phone VARCHAR(11))");

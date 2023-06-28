@@ -1,5 +1,6 @@
 package hjy.com.red_book_community.community.bean;
 
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 
 import java.util.Date;
@@ -9,11 +10,12 @@ public class ArticleBean {
     private int writerId;
     private String title;
     private String content;
-    private Drawable writerAvatar;
+    private Bitmap writerAvatar;
     private String writerName;
     private Long likeNumber;
     private Date postTime;
     private ImageBean imageBean;
+    private boolean isChecked = false;
 
     public ArticleBean() {
     }
@@ -27,7 +29,7 @@ public class ArticleBean {
     }
 
     public ArticleBean(int id, int writerId, String title, String content,
-                       Drawable writerAvatar, String writerName, Long likeNumber,
+                        String writerName, Long likeNumber,
                        Date postTime, ImageBean imageBean) {
         this.id = id;
         this.writerId = writerId;
@@ -38,6 +40,14 @@ public class ArticleBean {
         this.likeNumber = likeNumber;
         this.postTime = postTime;
         this.imageBean = imageBean;
+    }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
     }
 
     public int getWriterId() {
@@ -56,11 +66,11 @@ public class ArticleBean {
         this.imageBean = imageBean;
     }
 
-    public Drawable getWriterAvatar() {
+    public Bitmap getWriterAvatar() {
         return writerAvatar;
     }
 
-    public void setWriterAvatar(Drawable writerAvatar) {
+    public void setWriterAvatar(Bitmap writerAvatar) {
         this.writerAvatar = writerAvatar;
     }
 

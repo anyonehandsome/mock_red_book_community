@@ -24,7 +24,6 @@ public class DateUtil {
         Date date = null;
         try {
             date = sdf.parse(dateString);
-            System.out.println(date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
